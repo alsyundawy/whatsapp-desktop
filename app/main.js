@@ -42,16 +42,21 @@
             }
         }
         if (groupLinkOpenRequested != null) {
-            whatsApp.window.webContents.executeJavaScript(
-                "var el = document.createElement('a');\
-                el.href = \"" + groupLinkOpenRequested + "\"; \
-                el.style.display = \"none\"; \
-                el.rel = 'noopener noreferrer'; \
-                el.id = 'newlink'; \
-                document.body.appendChild(el); \
-                setTimeout(function() { var el = document.getElementById('newlink'); el.click(); document.body.removeChild(el); }, 500); \
-                "
-            )
+            const safeUrl = JSON.stringify(groupLinkOpenRequested);
+            whatsApp.window.webContents.executeJavaScript(`
+                (function() {
+                    var el = document.createElement('a');
+                    el.href = ${safeUrl};
+                    el.style.display = 'none';
+                    el.rel = 'noopener noreferrer';
+                    el.id = 'newlink';
+                    document.body.appendChild(el);
+                    setTimeout(function() { 
+                        var el = document.getElementById('newlink'); 
+                        if (el) { el.click(); document.body.removeChild(el); }
+                    }, 500);
+                })();
+            `);
         }
     })
 

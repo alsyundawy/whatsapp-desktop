@@ -3,8 +3,10 @@
 source ./scripts/constants.sh
 
 npm install
+cd app && npm prune --production && cd ..
 electron-packager ./app $APP_NAME \
  --overwrite \
+ --prune=true \
  --out=$DIST_DIR \
  --package-manager=yarn \
  --platform=$APP_PLATFORM \
