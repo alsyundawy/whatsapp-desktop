@@ -9,29 +9,53 @@ permissions:
   contents: write
 
 jobs:
-  release:
-    name: Create Release and Build
+  build-mac:
+    name: Build macOS
     runs-on: macos-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18 # LTS
+          node-version: 18
+      - name: Install dependencies
+        run: npm install
+      - name: Build macOS platforms
+        run: |
+          npm run clean
+          npm run build:osx
+          npm run build:osxm1
+      - name: Upload macOS binaries
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/releases/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  build-win-linux:
+    name: Build Windows and Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
       - name: Install dependencies
         run: |
-          brew install dpkg gnu-sed
-          echo "$(brew --prefix gnu-sed)/libexec/gnubin" >> $GITHUB_PATH
+          sudo apt-get update
+          sudo apt-get install -y wine dpkg
           npm install
-
-      - name: Build all platforms
-        run: npm run build:all
-
-      - name: Upload binaries to Release
+      - name: Build Windows and Linux platforms
+        run: |
+          npm run clean
+          npm run build:win
+          npm run build:linux
+          npm run build:linux32
+          npm run build:linuxarmv7l
+      - name: Upload Windows/Linux binaries
         uses: softprops/action-gh-release@v2
         with:
           files: build/releases/*
