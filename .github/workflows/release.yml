@@ -20,7 +20,10 @@ jobs:
           node-version: 18 # LTS
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          brew install dpkg gnu-sed
+          echo "$(brew --prefix gnu-sed)/libexec/gnubin" >> $GITHUB_PATH
+          npm install
 
       - name: Build all platforms
         run: npm run build:all
