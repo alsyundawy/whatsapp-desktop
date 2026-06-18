@@ -8,7 +8,6 @@
     const request = require('request')
     const nodeGettext = require('node-gettext')
     const gettextParser = require('gettext-parser')
-    const AutoLaunch = require('auto-launch')
     const log = require('electron-log')
     const join = require('path').join
     const notifier = require('node-notifier')
@@ -128,9 +127,6 @@
         log.warn("No supported locale found, defaulting to en_US")
     }
 
-    global.autolauncher = new AutoLaunch({
-        name: app.getName()
-    })
     global.onlyOSX = function(callback) {
         if (process.platform === 'darwin') {
             return Function.bind.apply(callback, this, [].slice.call(arguments, 0))
@@ -305,20 +301,16 @@
                 whatsApp.tray = undefined
             }
             if (config.get("autostart") == true) {
-                autolauncher.isEnabled().then(function(enabled) {
-                    if (!enabled) {
-                        autolauncher.enable()
-                        log.info("Autostart enabled")
-                    }
-                })
+                if (!app.getLoginItemSettings().openAtLogin) {
+                    app.setLoginItemSettings({ openAtLogin: true })
+                    log.info("Autostart enabled")
+                }
             }
             else {
-                autolauncher.isEnabled().then(function(enabled) {
-                    if (enabled) {
-                        autolauncher.disable()
-                        log.info("Autostart disabled")
-                    }
-                })
+                if (app.getLoginItemSettings().openAtLogin) {
+                    app.setLoginItemSettings({ openAtLogin: false })
+                    log.info("Autostart disabled")
+                }
             }
             whatsApp.window.setMenuBarVisibility(config.get("autoHideMenuBar") != true)
             whatsApp.window.setAutoHideMenuBar(config.get("autoHideMenuBar") == true)
