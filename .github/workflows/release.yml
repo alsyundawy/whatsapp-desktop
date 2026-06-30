@@ -64,9 +64,6 @@ jobs:
   build-win:
     name: Build Windows
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: bash
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -74,12 +71,46 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: Install Yarn globally
+        run: npm install -g yarn
       - name: Install dependencies
         run: npm install
       - name: Build Windows platform
+        shell: pwsh
         run: |
-          npm run clean
-          npm run build:win
+          $env:APP_ARCH = "x64"
+          $env:APP_PLATFORM = "win32"
+          $env:APP_ICON_PATH = "assets/win/whatsapp.ico"
+
+          # Load constants
+          $ELECTRON_VERSION = (Get-Content scripts/constants.sh | Select-String 'ELECTRON_VERSION=').ToString().Split('=')[1].Trim('"')
+          $APP_NAME = (Get-Content scripts/constants.sh | Select-String 'APP_NAME=').ToString().Split('=')[1].Trim('"')
+          $DIST_DIR = "build/dist"
+          $RELEASES_DIR = "build/releases"
+
+          # Install deps
+          npm install
+          Push-Location app; npm prune --production; Pop-Location
+
+          # Create output dirs
+          New-Item -ItemType Directory -Force -Path $DIST_DIR | Out-Null
+          New-Item -ItemType Directory -Force -Path $RELEASES_DIR | Out-Null
+
+          # Package
+          npx electron-packager ./app $APP_NAME `
+            --overwrite `
+            --prune=true `
+            --out=$DIST_DIR `
+            --platform=win32 `
+            --arch=x64 `
+            --electron-version=$ELECTRON_VERSION `
+            --icon=build/assets/win/whatsapp.ico
+
+          # Zip the output
+          $APP_DIR = "$DIST_DIR\$APP_NAME-win32-x64"
+          $ZIP_NAME = "$APP_NAME-win32-x64"
+          Compress-Archive -Path "$APP_DIR\*" -DestinationPath "$RELEASES_DIR\$ZIP_NAME.zip" -Force
+          Write-Host "Built: $RELEASES_DIR\$ZIP_NAME.zip"
       - name: Upload Windows binaries
         uses: softprops/action-gh-release@v2
         with:
