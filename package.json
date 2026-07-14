@@ -18,8 +18,8 @@
         "build:all": "./scripts/build-all.sh"
     },
     "devDependencies": {
-        "electron": "^17.0.0",
-        "electron-packager": "15.5.1"
+        "electron": "^39.8.5",
+        "electron-packager": "17.1.2"
     },
     "dependencies": {
         "process-nextick-args": "^1.0.7",
