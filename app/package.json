@@ -15,8 +15,8 @@
     "electron-context-menu": "^0.9.1",
     "electron-log": "^2.2.7",
     "gettext-parser": "^1.2.2",
-    "node-gettext": "^2.0.0",
+    "node-gettext": "^3.0.1",
     "node-notifier": "^8.0.1",
-    "request": "^2.83.0"
+    "request": "^2.88.2"
   }
 }
