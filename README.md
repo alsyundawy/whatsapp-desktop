@@ -1,8 +1,8 @@
-![downloads](https://img.shields.io/github/downloads/oOthkOo/whatsapp-desktop/total?style=for-the-badge)
+![downloads](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/total?style=for-the-badge)
 
 # WhatsApp Desktop
 
-![screenshot](https://github.com/oOthkOo/whatsapp-desktop/blob/master/screenshots/whatsapp-screen.png "Main Window")
+![screenshot](https://github.com/benzntech/whatsapp-desktop/blob/master/screenshots/whatsapp-screen.png "Main Window")
 
 Unofficial WhatsApp Desktop Client for OSX, Linux and Windows. Build with [Electron](http://electron.atom.io/).  
 
@@ -36,10 +36,10 @@ Original versions of WhatsApp Desktop was written by:
 
 ## Download WhatsApp
 
-* Windows 10/11 - [Download](https://github.com/oOthkOo/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip) - ![Stats](https://img.shields.io/github/downloads/oOthkOo/whatsapp-desktop/latest/WhatsApp-win32-x64.zip?style=flat-square)
-* Mac OSX - [Download](https://github.com/oOthkOo/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-x64.zip) - ![Stats](https://img.shields.io/github/downloads/oOthkOo/whatsapp-desktop/latest/WhatsApp-darwin-x64.zip?style=flat-square)
-* Ubuntu (32 bits) - [Download](https://github.com/oOthkOo/whatsapp-desktop/releases/latest/download/whatsapp-linux-ia32.deb) - ![Stats](https://img.shields.io/github/downloads/oOthkOo/whatsapp-desktop/latest/whatsapp-linux-ia32.deb?style=flat-square)
-* Ubuntu (64 bits) - [Download](https://github.com/oOthkOo/whatsapp-desktop/releases/latest/download/whatsapp-linux-x64.deb) - ![Stats](https://img.shields.io/github/downloads/oOthkOo/whatsapp-desktop/latest/whatsapp-linux-x64.deb?style=flat-square)
+* Windows 10/11 - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/WhatsApp-win32-x64.zip?style=flat-square)
+* Mac OSX - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-x64.zip) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/WhatsApp-darwin-x64.zip?style=flat-square)
+* Ubuntu (32 bits) - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/whatsapp-linux-ia32.deb) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/whatsapp-linux-ia32.deb?style=flat-square)
+* Ubuntu (64 bits) - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/whatsapp-linux-x64.deb) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/whatsapp-linux-x64.deb?style=flat-square)
 
 Donations
 -----
@@ -74,7 +74,7 @@ You need NPM and Yarn to be installed on your system before building deb package
 You can build `whatsapp-linux-xxx.deb` package with:
 
 ```sh
-git clone https://github.com/oOthkOo/whatsapp-desktop.git
+git clone https://github.com/benzntech/whatsapp-desktop.git
 cd whatsapp-desktop
 npm run build:linux   # for x64 arch
 npm run build:linux32 # for x32 arch
@@ -91,7 +91,7 @@ sudo apt install -f
 
 ## Contributions
 
-Contributions are welcome! For feature requests and bug reports please submit an [issue](https://github.com/oOthkOo/whatsapp-desktop/issues).
+Contributions are welcome! For feature requests and bug reports please submit an [issue](https://github.com/benzntech/whatsapp-desktop/issues).
 
 ## Build from source
 
