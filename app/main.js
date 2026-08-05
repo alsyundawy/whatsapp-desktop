@@ -9,6 +9,10 @@
     const nodeGettext = require('node-gettext')
     const gettextParser = require('gettext-parser')
     const log = require('electron-log')
+
+    if (process.stdout) process.stdout.on('error', (err) => { if (err.code === 'EPIPE') return; });
+    if (process.stderr) process.stderr.on('error', (err) => { if (err.code === 'EPIPE') return; });
+
     const join = require('path').join
     const notifier = require('node-notifier')
     // electron-context-menu replaced with custom handler that supports spellcheck suggestions
@@ -571,7 +575,7 @@
             })
 
             // Setting User Agent
-            var userAgent = 'Mozilla/5.0 (X11; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0'
+            var userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
 
             // Pick a random user agent from agents.json
             if (agents.userAgents) {
