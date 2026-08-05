@@ -29,6 +29,7 @@ jobs:
           npm run build:osx
           npm run build:osxm1
       - name: Upload macOS binaries
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: build/releases/*
@@ -57,6 +58,7 @@ jobs:
           npm run build:linux32
           npm run build:linuxarmv7l
       - name: Upload Linux binaries
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: build/releases/*
@@ -114,6 +116,7 @@ jobs:
           Compress-Archive -Path "$APP_DIR\*" -DestinationPath "$RELEASES_DIR\$ZIP_NAME.zip" -Force
           Write-Host "Built: $RELEASES_DIR\$ZIP_NAME.zip"
       - name: Upload Windows binaries
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: build/releases/*
