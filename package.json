@@ -19,7 +19,7 @@
     },
     "devDependencies": {
         "electron": "^44.2.0",
-        "electron-packager": "15.5.1"
+        "electron-packager": "17.1.2"
     },
     "dependencies": {
         "process-nextick-args": "^1.0.7",
