@@ -18,7 +18,7 @@
         "build:all": "./scripts/build-all.sh"
     },
     "devDependencies": {
-        "electron": "^17.0.0",
+        "electron": "^39.8.10",
         "electron-packager": "15.5.1"
     },
     "dependencies": {
