@@ -142,9 +142,9 @@ Download the production-ready binary for your operating system ([Release v1.0.1]
 | **Ubuntu / Debian (DEB x64)** | `x86_64` | [whatsapp-linux-x64.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-x64.deb) | ~73.0 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-x64.deb?style=flat-square) |
 | **Ubuntu / Debian (DEB 32-bit)** | `ia32` | [whatsapp-linux-ia32.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-ia32.deb) | ~63.1 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-ia32.deb?style=flat-square) |
 | **ARM Linux (DEB ARMv7l)** | `armv7l` | [whatsapp-linux-armv7l.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-armv7l.deb) | ~59.2 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-armv7l.deb?style=flat-square) |
-| **Fedora / RHEL (RPM x86_64)** | `x86_64` | [whatsapp-desktop-1.0.1.x86_64.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1.x86_64.rpm) | ~73.0 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1.x86_64.rpm?style=flat-square) |
-| **Fedora / RHEL (RPM 32-bit)** | `i386` | [whatsapp-desktop-1.0.1.i386.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1.i386.rpm) | ~63.1 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1.i386.rpm?style=flat-square) |
-| **ARM Linux (RPM ARMv7l)** | `armv7hl` | [whatsapp-desktop-1.0.1.armv7hl.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1.armv7hl.rpm) | ~59.2 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1.armv7hl.rpm?style=flat-square) |
+| **Fedora / RHEL (RPM x86_64)** | `x86_64` | [whatsapp-desktop-1.0.1-1.x86_64.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1-1.x86_64.rpm) | ~99.5 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1-1.x86_64.rpm?style=flat-square) |
+| **Fedora / RHEL (RPM 32-bit)** | `i386` | [whatsapp-desktop-1.0.1-1.i386.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1-1.i386.rpm) | ~82.8 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1-1.i386.rpm?style=flat-square) |
+| **ARM Linux (RPM ARMhf)** | `armhf` | [whatsapp-desktop-1.0.1-1.armhf.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1-1.armhf.rpm) | ~73.7 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1-1.armhf.rpm?style=flat-square) |
 
 ---
 
@@ -153,14 +153,14 @@ Download the production-ready binary for your operating system ([Release v1.0.1]
 | Operating System | Minimum Architecture | Memory (RAM) | Storage Space | Notes |
 | :--- | :--- | :---: | :---: | :--- |
 | **macOS** | macOS 11.0 (Big Sur) or higher | 4 GB | 500 MB | Universal support for Intel and Apple Silicon (M-series) |
-| **Windows** | Windows 10 or Windows 11 (64-bit) | 4 GB | 300 MB | Standalone portable executable or extracted archive |
-| **Linux** | Debian 11+, Ubuntu 20.04+, Mint 20+, Fedora 36+ | 2 GB | 250 MB | Requires `dpkg` and standard system GTK / libnotify libraries |
+| **Windows** | Windows 10 or Windows 11 (64-bit / ARM64) | 4 GB | 300 MB | Standalone portable executable or extracted archive |
+| **Linux** | Debian 11+, Ubuntu 20.04+, Mint 20+, Fedora 36+, RHEL 9+ | 2 GB | 250 MB | Native `.deb` and `.rpm` packages supported |
 
 ---
 
 ## Quick Start & Installation
 
-### Debian / Ubuntu / Linux Mint
+### Debian / Ubuntu / Linux Mint (DEB)
 
 Download the `.deb` package and install via terminal:
 
@@ -186,10 +186,10 @@ Download the `.rpm` package and install via terminal:
 
 ```sh
 # Fedora / RHEL / CentOS Stream
-sudo dnf install ./whatsapp-desktop-1.0.1.x86_64.rpm
+sudo dnf install ./whatsapp-desktop-1.0.1-1.x86_64.rpm
 
 # openSUSE
-sudo zypper install ./whatsapp-desktop-1.0.1.x86_64.rpm
+sudo zypper install ./whatsapp-desktop-1.0.1-1.x86_64.rpm
 ```
 
 ### macOS (Intel & Apple Silicon)
