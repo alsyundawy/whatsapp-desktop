@@ -1,145 +1,124 @@
-![downloads](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/total?style=for-the-badge)
+<div align="center">
+
+![downloads](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/total?style=for-the-badge)
+![release](https://img.shields.io/github/v/release/alsyundawy/whatsapp-desktop?style=for-the-badge)
+![license](https://img.shields.io/github/license/alsyundawy/whatsapp-desktop?style=for-the-badge)
 
 # WhatsApp Desktop
 
-![screenshot](https://github.com/benzntech/whatsapp-desktop/blob/master/screenshots/whatsapp-screen.png "Main Window")
+![screenshot](https://raw.githubusercontent.com/alsyundawy/whatsapp-desktop/master/screenshots/whatsapp-screen.png "Main Window")
 
-Unofficial WhatsApp Desktop Client for OSX, Linux and Windows. Build with [Electron](http://electron.atom.io/).  
+Unofficial WhatsApp Desktop Client for macOS, Linux, and Windows. Built with [Electron](https://www.electronjs.org/).
 
-This is **NOT** an official product. This project does not attempt to reverse engineer the WhatsApp API or attempt to reimplement any part of the WhatsApp client. Any communication between the user and WhatsApp servers is handled by official WhatsApp Web itself; this is just a native wrapper for WhatsApp Web, like a browser.
+</div>
 
-Original versions of WhatsApp Desktop was written by:
-* @bcalik : https://github.com/bcalik/Whatsapp-Desktop
-* @Enrico204 : https://github.com/Enrico204/Whatsapp-Desktop
+> **Disclaimer**: This is **NOT** an official product from Meta or WhatsApp. This project does not reverse engineer the WhatsApp API or reimplement any part of the WhatsApp client. Any communication between the user and WhatsApp servers is handled entirely by official WhatsApp Web itself; this app functions as a native desktop wrapper with system integrations.
 
-## Features
+---
 
-* Cross platform (OSX, Windows x64, Linux ia32/x64 and ARM v7l)
-* Native notifications
-* System tray icon
-* Open links in browser
-* Badge with the number of notifications in the dock/taskbar
-* Dock icon bounces when a new message is received
-* Focus on contact search input via CMD+F (WIN+F)
-* Phone info window (s/w versions, battery status, etc)
-* Auto-launch on login
-* Start minimized to tray icon
-* Logging system (log to console and *userData*/log.log)
-* Apply custom CSS stylesheet
-* Auto-hide menu bar (Windows, Linux)
-* Disabling GPU rendering (useful when dealing with bugged video drivers)
-* A couple of things can be configured:
-  * Toggle avatar visibility
-  * Toggle preview of the messages visibility
-  * Set the size for the media thumbs
-  * Proxy settings connect to WhatsApp web
+## ✨ Features
 
-## Download WhatsApp
+* **Cross-platform**: macOS (Intel & Apple Silicon), Windows 10/11 (x64), Linux (x64, ia32, ARMv7l)
+* **Security Hardened**: URL allowlist validation, CSP & SRI integrity, secure renderer isolation
+* **Native Notifications**: Desktop notifications for incoming messages
+* **System Tray & Dock**: System tray icon with status, dock bouncing on new messages, unread badge counter
+* **Quick Shortcuts**: Focus search via `Cmd+F` (macOS) / `Ctrl+F` (Windows/Linux)
+* **Phone Info Dialog**: Displays battery status, WhatsApp web client status, connection state
+* **Auto-Launch & Tray**: Configurable start on login and start minimized to tray
+* **Custom Styling**: Support for custom CSS stylesheets and themes
+* **Media & Privacy Controls**: Toggle avatar visibility, message previews, media thumbnail size, proxy setup
+* **Hardware Acceleration**: Option to disable GPU rendering for buggy drivers
 
-* Windows 10/11 - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/WhatsApp-win32-x64.zip?style=flat-square)
-* Mac OSX - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-x64.zip) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/WhatsApp-darwin-x64.zip?style=flat-square)
-* Ubuntu (32 bits) - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/whatsapp-linux-ia32.deb) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/whatsapp-linux-ia32.deb?style=flat-square)
-* Ubuntu (64 bits) - [Download](https://github.com/benzntech/whatsapp-desktop/releases/latest/download/whatsapp-linux-x64.deb) - ![Stats](https://img.shields.io/github/downloads/benzntech/whatsapp-desktop/latest/whatsapp-linux-x64.deb?style=flat-square)
+---
 
-Donations
------
+## 📥 Download WhatsApp Desktop
 
-:heart: Donations are always welcome :heart:.
+Download the latest version ([v1.0.1](https://github.com/alsyundawy/whatsapp-desktop/releases/latest)):
 
-### Buymeacoffee
+| Platform | Download Link | Stats |
+| :--- | :--- | :---: |
+| **Windows (x64)** | [WhatsApp-win32-x64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip) | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-win32-x64.zip?style=flat-square) |
+| **macOS (Apple Silicon M1/M2/M3)** | [WhatsApp-darwin-arm64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-arm64.zip) | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-darwin-arm64.zip?style=flat-square) |
+| **macOS (Intel x64)** | [WhatsApp-darwin-x64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-x64.zip) | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-darwin-x64.zip?style=flat-square) |
+| **Ubuntu / Debian (x64)** | [whatsapp-linux-x64.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-x64.deb) | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-x64.deb?style=flat-square) |
+| **Ubuntu / Debian (32-bit)** | [whatsapp-linux-ia32.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-ia32.deb) | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-ia32.deb?style=flat-square) |
+| **Ubuntu / Debian (ARMv7l)** | [whatsapp-linux-armv7l.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-armv7l.deb) | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-armv7l.deb?style=flat-square) |
 
-[<img height="55px" src="https://raw.githubusercontent.com/oOthkOo/oOthkOo/main/assets/bmac-btn.svg">](https://buymeacoffee.com/oothkoo)
+---
 
-### Crypto
+## 💖 Support & Donations
 
-Coins | Symbols | Addresses
---- | --- | ---
-<img width="32" src="https://raw.githubusercontent.com/oOthkOo/oOthkOo/main/assets/btc.svg" alt="Bitcoin"/> | BTC | 3B52fbzNFQTaKZxWf5GrCUsASD2UP8na4A
-<img width="32" src="https://raw.githubusercontent.com/oOthkOo/oOthkOo/main/assets/eth.svg" alt="Ethereum"/> | ETH | 0x1C389f1f85Cdb3C2996b83fAc87E496A80698B7C
-<img width="32" src="https://raw.githubusercontent.com/oOthkOo/oOthkOo/main/assets/sol.svg" alt="Solana"/> | SOL | F14pWhGjGLcCF8RMk4JhbK2kD49iBBwa9KFygRJo54Fm
+Donations are always appreciated to support ongoing maintenance, security updates, and active development!
 
-## Build WhatsApp Debian/Ubuntu/Mint packages
+[![Donate with PayPal](https://img.shields.io/badge/PayPal-Donate-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/alsyundawy)
 
-Follow these instructions to install `whatsapp-desktop` on your system.
+* **PayPal**: [https://paypal.me/alsyundawy](https://paypal.me/alsyundawy)
 
-### Install NPM and Yarn
+---
 
-You need NPM and Yarn to be installed on your system before building deb package.
+## 🛠️ Build from Source
 
-* NPM  : https://nodejs.org/en/download/package-manager/
-* Yarn : https://yarnpkg.com/lang/en/docs/install/
+### Prerequisites
+* **Node.js**: `>= 22.12.0`
+* **Yarn**: `npm install -g yarn`
 
-### Build Linux 32/64 bits packages
-
-You can build `whatsapp-linux-xxx.deb` package with:
-
+### Installation
 ```sh
-git clone https://github.com/benzntech/whatsapp-desktop.git
+git clone https://github.com/alsyundawy/whatsapp-desktop.git
 cd whatsapp-desktop
-npm run build:linux   # for x64 arch
-npm run build:linux32 # for x32 arch
+npm install
 ```
 
-You'll find debian packages into `build/releases` directory.
+### Build Commands
 
-### Install WhatsApp on Debian, Ubuntu, Mint, ...
+Build for your current or desired platform:
 
+```sh
+npm run build:{platform}
+```
+
+| Command | Platform | Output Format | Output Directory |
+| :--- | :--- | :---: | :--- |
+| `npm run build:osx` | macOS (Intel x64) | `.zip` | `build/releases/` |
+| `npm run build:osxm1` | macOS (Apple Silicon arm64) | `.zip` | `build/releases/` |
+| `npm run build:win` | Windows (x64) | `.zip` | `build/releases/` |
+| `npm run build:linux` | Linux (x64) | `.deb` | `build/releases/` |
+| `npm run build:linux32` | Linux (ia32) | `.deb` | `build/releases/` |
+| `npm run build:linuxarmv7l` | Linux (ARMv7l) | `.deb` | `build/releases/` |
+| `npm run build:all` | All platforms | `.deb` / `.zip` | `build/releases/` |
+
+#### Installing on Debian / Ubuntu / Linux Mint
 ```sh
 sudo apt install ./build/releases/whatsapp-linux-x64.deb
 sudo apt install -f
 ```
 
-## Contributions
+#### Cross-compiling for Windows (from macOS/Linux)
+Requires `wine`:
+* macOS: `brew install wine`
+* Debian/Ubuntu: `sudo apt install wine`
 
-Contributions are welcome! For feature requests and bug reports please submit an [issue](https://github.com/benzntech/whatsapp-desktop/issues).
-
-## Build from source
-
-To build from the source, run the following commands:
-
+### Development Mode (Live Run)
 ```sh
-npm install
-npm run build:{platform}
+npm run dev
+# or
+yarn run dev
 ```
 
-| Platform | OS | Format |
-| --- | --- | --- |
-| win | Windows only | zip |
-| osx | OSX only | zip |
-| osxm1 | OSX arm64 (m1) | zip |
-| linux | Linux 64 bits | deb |
-| linux32 | Linux 32 bits | deb |
-| linuxarmv7l | ARM Linux | deb |
+---
 
-Or if you wants build for all platforms:
+## 🤝 Credits & Acknowledgements
 
-```sh
-npm install
-npm run build:all
-```
+This project builds upon the hard work of the open-source community. Sincere gratitude and credits to all original creators and upstream contributors:
 
-You'll find artifacts into `build/releases/` directory.
+* **[@bcalik](https://github.com/bcalik)** (Burak Çalık) — Original creator of [Whatsapp-Desktop](https://github.com/bcalik/Whatsapp-Desktop)
+* **[@Enrico204](https://github.com/Enrico204)** (Enrico Fasoli) — Early maintainer and enhancements ([Whatsapp-Desktop](https://github.com/Enrico204/Whatsapp-Desktop))
+* **[@oOthkOo](https://github.com/oOthkOo)** (Thomas K.) — Architecture, packaging scripts, and feature developments ([whatsapp-desktop](https://github.com/oOthkOo/whatsapp-desktop))
+* **[@benzntech](https://github.com/benzntech)** (Benzntech) — Repository stewardship & distribution ([whatsapp-desktop](https://github.com/benzntech/whatsapp-desktop))
+* **[@alsyundawy](https://github.com/alsyundawy)** — Security hardening, CodeQL remediation, Electron modernization, dependency pruning, and CI/CD automation
 
-#### Cross-build for Windows (from Linux/macOS)
+---
 
-`Wine` needs to be installed.
-On macOS, it is installable via Homebrew:  
+## 📄 Contributions & Issues
 
-```sh
-brew install wine
-```
-
-On Linux, it is installable via:
-
-```sh
-sudo apt install wine
-```
-
-On GNU/Linux you can install `Wine` from your distro package manager.
-
-Please mind that `Wine` requires an Xorg display, so you should set correctly your DISPLAY env var (you can use `Xvfb` if you don't have/want a real Xorg display running)
-
-## Run on-the-fly (for devs)
-
-If you're a developer, you may want to use directly `yarn run dev` (in project root) instead of compiling the code each time.
-Please note that autostart feature will not work in this mode.
+Contributions, suggestions, and bug reports are welcome! Please feel free to open an [issue](https://github.com/alsyundawy/whatsapp-desktop/issues) or submit a pull request.
