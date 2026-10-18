@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y dpkg
+          sudo apt-get install -y dpkg rpm alien fakeroot
           npm install -g yarn
           npm install
       - name: Build Linux platforms
@@ -60,6 +60,7 @@ jobs:
           npm run build:linux
           npm run build:linux32
           npm run build:linuxarmv7l
+          npm run build:rpm
       - name: Upload Linux binaries
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v3
@@ -103,7 +104,7 @@ jobs:
           New-Item -ItemType Directory -Force -Path $DIST_DIR | Out-Null
           New-Item -ItemType Directory -Force -Path $RELEASES_DIR | Out-Null
 
-          # Package
+          # Package x64
           npx electron-packager ./app $APP_NAME `
             --overwrite `
             --prune=true `
@@ -113,11 +114,27 @@ jobs:
             --electron-version=$ELECTRON_VERSION `
             --icon=build/assets/win/whatsapp.ico
 
-          # Zip the output
+          # Zip the x64 output
           $APP_DIR = "$DIST_DIR\$APP_NAME-win32-x64"
           $ZIP_NAME = "$APP_NAME-win32-x64"
           Compress-Archive -Path "$APP_DIR\*" -DestinationPath "$RELEASES_DIR\$ZIP_NAME.zip" -Force
           Write-Host "Built: $RELEASES_DIR\$ZIP_NAME.zip"
+
+          # Package arm64 (Windows on ARM)
+          npx electron-packager ./app $APP_NAME `
+            --overwrite `
+            --prune=true `
+            --out=$DIST_DIR `
+            --platform=win32 `
+            --arch=arm64 `
+            --electron-version=$ELECTRON_VERSION `
+            --icon=build/assets/win/whatsapp.ico
+
+          # Zip the arm64 output
+          $APP_DIR_ARM = "$DIST_DIR\$APP_NAME-win32-arm64"
+          $ZIP_NAME_ARM = "$APP_NAME-win32-arm64"
+          Compress-Archive -Path "$APP_DIR_ARM\*" -DestinationPath "$RELEASES_DIR\$ZIP_NAME_ARM.zip" -Force
+          Write-Host "Built: $RELEASES_DIR\$ZIP_NAME_ARM.zip"
       - name: Upload Windows binaries
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v3

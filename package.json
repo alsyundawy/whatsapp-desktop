@@ -10,11 +10,13 @@
         "gettext": "xgettext app/*.js -j --omit-header -o app/locale/messages.pot && xgettext app/html/*.html -L JavaScript -j --omit-header -o app/locale/messages.pot",
         "clean": "./scripts/clean.sh",
         "build:win": "./scripts/build-win-x64.sh",
+        "build:winarm64": "./scripts/build-win-arm64.sh",
         "build:osx": "./scripts/build-darwin-x64.sh",
         "build:osxm1": "./scripts/build-darwin-arm64.sh",
         "build:linux": "./scripts/build-linux-x64.sh",
         "build:linux32": "./scripts/build-linux-x32.sh",
         "build:linuxarmv7l": "./scripts/build-linux-armv7l.sh",
+        "build:rpm": "./scripts/build-rpm.sh",
         "build:all": "./scripts/build-all.sh"
     },
     "devDependencies": {

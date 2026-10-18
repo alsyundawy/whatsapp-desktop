@@ -16,7 +16,7 @@
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-22.x%20LTS-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js 22 LTS"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=for-the-badge" alt="License: GPL-3.0"></a>
   <a href="#security-architecture--hardening"><img src="https://img.shields.io/badge/Security-CodeQL%20%7C%20Dependabot%200%20Alerts-success?style=for-the-badge&logo=securityscorecard&logoColor=white" alt="Security Hardened"></a>
-  <a href="#download-whatsapp-desktop"><img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Windows%20%7C%20Linux-orange?style=for-the-badge&logo=linux&logoColor=white" alt="Cross-Platform"></a>
+  <a href="#download-whatsapp-desktop"><img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Windows%20(x64%2FARM64)%20%7C%20Linux%20(DEB%2FRPM)-orange?style=for-the-badge&logo=linux&logoColor=white" alt="Cross-Platform"></a>
   <a href="https://github.com/alsyundawy/whatsapp-desktop/releases"><img src="https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/total?style=for-the-badge&logo=github&color=blueviolet" alt="Total Downloads"></a>
 </p>
 
@@ -108,6 +108,7 @@ Unlike keeping a browser tab open, WhatsApp Desktop runs in an isolated runtime 
   - **Safe DOM Injection:** Eliminated raw string concatenation in `executeJavaScript` via sanitized `JSON.stringify` serialization.
 
 - ⚡ **Cross-Platform Native Desktop Integration:**
+  - **Universal Architecture Support:** macOS (Intel & Apple Silicon M-series), Windows (x64 & **Windows on ARM / ARM64**), and Linux (**DEB & RPM** packages for x64, ia32, ARMv7l).
   - **Native OS Notifications:** Toast notifications for incoming messages with audio feedback.
   - **Dock & Taskbar Badges:** Unread message counters dynamically rendered on the dock icon (macOS) and taskbar (Windows/Linux).
   - **Dock Bounce Effect:** Interactive dock icon bouncing on macOS when new messages arrive.
@@ -134,12 +135,16 @@ Download the production-ready binary for your operating system ([Release v1.0.1]
 
 | Platform | Architecture | Binary Package | Size | Status |
 | :--- | :---: | :--- | :---: | :---: |
-| **Windows 10 / 11** | `x64` | [WhatsApp-win32-x64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip) | ~86.2 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-win32-x64.zip?style=flat-square) |
+| **Windows 10 / 11 (x64)** | `x64` | [WhatsApp-win32-x64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip) | ~86.2 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-win32-x64.zip?style=flat-square) |
+| **Windows 10 / 11 (ARM64)** | `arm64` | [WhatsApp-win32-arm64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-win32-arm64.zip) | ~86.0 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-win32-arm64.zip?style=flat-square) |
 | **macOS (Apple Silicon)** | `arm64` (M1/M2/M3) | [WhatsApp-darwin-arm64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-arm64.zip) | ~237.5 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-darwin-arm64.zip?style=flat-square) |
 | **macOS (Intel)** | `x64` | [WhatsApp-darwin-x64.zip](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-x64.zip) | ~229.7 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/WhatsApp-darwin-x64.zip?style=flat-square) |
-| **Ubuntu / Debian / Mint** | `x86_64` | [whatsapp-linux-x64.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-x64.deb) | ~73.0 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-x64.deb?style=flat-square) |
-| **Ubuntu / Debian (32-bit)** | `ia32` | [whatsapp-linux-ia32.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-ia32.deb) | ~63.1 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-ia32.deb?style=flat-square) |
-| **ARM Linux (Raspberry Pi)** | `armv7l` | [whatsapp-linux-armv7l.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-armv7l.deb) | ~59.2 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-armv7l.deb?style=flat-square) |
+| **Ubuntu / Debian (DEB x64)** | `x86_64` | [whatsapp-linux-x64.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-x64.deb) | ~73.0 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-x64.deb?style=flat-square) |
+| **Ubuntu / Debian (DEB 32-bit)** | `ia32` | [whatsapp-linux-ia32.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-ia32.deb) | ~63.1 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-ia32.deb?style=flat-square) |
+| **ARM Linux (DEB ARMv7l)** | `armv7l` | [whatsapp-linux-armv7l.deb](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-linux-armv7l.deb) | ~59.2 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-linux-armv7l.deb?style=flat-square) |
+| **Fedora / RHEL (RPM x86_64)** | `x86_64` | [whatsapp-desktop-1.0.1.x86_64.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1.x86_64.rpm) | ~73.0 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1.x86_64.rpm?style=flat-square) |
+| **Fedora / RHEL (RPM 32-bit)** | `i386` | [whatsapp-desktop-1.0.1.i386.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1.i386.rpm) | ~63.1 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1.i386.rpm?style=flat-square) |
+| **ARM Linux (RPM ARMv7l)** | `armv7hl` | [whatsapp-desktop-1.0.1.armv7hl.rpm](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/whatsapp-desktop-1.0.1.armv7hl.rpm) | ~59.2 MiB | ![Stats](https://img.shields.io/github/downloads/alsyundawy/whatsapp-desktop/latest/whatsapp-desktop-1.0.1.armv7hl.rpm?style=flat-square) |
 
 ---
 
@@ -175,6 +180,18 @@ Launch from your desktop application menu or via terminal:
 whatsapp-desktop
 ```
 
+### Fedora / RHEL / CentOS Stream / openSUSE (RPM)
+
+Download the `.rpm` package and install via terminal:
+
+```sh
+# Fedora / RHEL / CentOS Stream
+sudo dnf install ./whatsapp-desktop-1.0.1.x86_64.rpm
+
+# openSUSE
+sudo zypper install ./whatsapp-desktop-1.0.1.x86_64.rpm
+```
+
 ### macOS (Intel & Apple Silicon)
 
 1. Download [`WhatsApp-darwin-arm64.zip`](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-arm64.zip) (for M1/M2/M3) or [`WhatsApp-darwin-x64.zip`](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-darwin-x64.zip) (for Intel).
@@ -182,9 +199,9 @@ whatsapp-desktop
 3. Drag `WhatsApp.app` into your `/Applications` folder.
 4. Launch `WhatsApp` from Launchpad or Spotlight (`Cmd + Space`).
 
-### Windows 10 / 11
+### Windows 10 / 11 (Intel / AMD & Windows on ARM)
 
-1. Download [`WhatsApp-win32-x64.zip`](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip).
+1. Download [`WhatsApp-win32-x64.zip`](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-win32-x64.zip) (for standard 64-bit PCs) or [`WhatsApp-win32-arm64.zip`](https://github.com/alsyundawy/whatsapp-desktop/releases/latest/download/WhatsApp-win32-arm64.zip) (for Windows on ARM devices such as Surface Pro X and Snapdragon X Elite).
 2. Extract the ZIP archive to your preferred location (e.g., `C:\Program Files\WhatsApp Desktop` or Desktop).
 3. Run `WhatsApp.exe`.
 
@@ -221,11 +238,13 @@ npm run build:{platform}
 | :--- | :--- | :---: | :---: | :--- |
 | `npm run build:osx` | macOS | `x64` (Intel) | `.zip` | `build/releases/WhatsApp-darwin-x64.zip` |
 | `npm run build:osxm1` | macOS | `arm64` (Apple Silicon) | `.zip` | `build/releases/WhatsApp-darwin-arm64.zip` |
-| `npm run build:win` | Windows | `x64` | `.zip` | `build/releases/WhatsApp-win32-x64.zip` |
+| `npm run build:win` | Windows | `x64` (Intel/AMD) | `.zip` | `build/releases/WhatsApp-win32-x64.zip` |
+| `npm run build:winarm64` | Windows | `arm64` (Windows on ARM) | `.zip` | `build/releases/WhatsApp-win32-arm64.zip` |
 | `npm run build:linux` | Linux | `x64` | `.deb` | `build/releases/whatsapp-linux-x64.deb` |
 | `npm run build:linux32` | Linux | `ia32` (32-bit) | `.deb` | `build/releases/whatsapp-linux-ia32.deb` |
 | `npm run build:linuxarmv7l` | Linux | `armv7l` (ARM) | `.deb` | `build/releases/whatsapp-linux-armv7l.deb` |
-| `npm run build:all` | All Platforms | Matrix | `.zip` / `.deb` | `build/releases/*` |
+| `npm run build:rpm` | Linux | Multi-Arch | `.rpm` | `build/releases/*.rpm` |
+| `npm run build:all` | All Platforms | Full Matrix | `.zip` / `.deb` / `.rpm` | `build/releases/*` |
 
 ### Cross-Compilation for Windows (from macOS / Linux)
 
