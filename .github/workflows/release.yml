@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install -g yarn
+          npm install
       - name: Build macOS platforms
         run: |
           npm run clean
@@ -50,6 +52,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y dpkg
+          npm install -g yarn
           npm install
       - name: Build Linux platforms
         run: |

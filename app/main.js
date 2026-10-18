@@ -5,7 +5,6 @@
     const agents = require('./agents')
     const electron = require('electron')
     const fs = require('fs')
-    const request = require('request')
     const nodeGettext = require('node-gettext')
     const gettextParser = require('gettext-parser')
     const log = require('electron-log')
@@ -14,8 +13,16 @@
     if (process.stderr) process.stderr.on('error', (err) => { if (err.code === 'EPIPE') return; });
 
     const join = require('path').join
-    const notifier = require('node-notifier')
-    // electron-context-menu replaced with custom handler that supports spellcheck suggestions
+
+    function isValidGroupLink(urlStr) {
+        if (!urlStr || typeof urlStr !== 'string') return false;
+        try {
+            const parsed = new URL(urlStr);
+            return parsed.protocol === 'https:' && (parsed.hostname === 'chat.whatsapp.com' || parsed.hostname.endsWith('.whatsapp.com'));
+        } catch (e) {
+            return false;
+        }
+    }
 
     const app = electron.app
     const AppMenu = electron.Menu
@@ -37,7 +44,7 @@
         var groupLinkOpenRequested = null
         if (argv.length > 1) {
             for(var i = 0; i < argv.length; i++) {
-                if (argv[i].indexOf("https://chat.whatsapp.com") >= 0) {
+                if (isValidGroupLink(argv[i])) {
                     groupLinkOpenRequested = argv[i]
                     log.info("Opening a group link: " + groupLinkOpenRequested)
                     break
@@ -90,7 +97,7 @@
     var groupLinkOpenRequested = null
     if (process.argv.length > 1) {
         for (var i = 0; i < process.argv.length; i++) {
-            if (process.argv[i].indexOf("https://chat.whatsapp.com") >= 0) {
+            if (isValidGroupLink(process.argv[i])) {
                 groupLinkOpenRequested = process.argv[i]
                 log.info(`Opening a group link: ${groupLinkOpenRequested}`)
                 break
@@ -203,7 +210,7 @@
 
                 var imgpath = config.get("background-image")
                 if (imgpath != undefined) {
-                    var img = new Buffer(fs.readFileSync(imgpath)).toString('base64')
+                    var img = Buffer.from(fs.readFileSync(imgpath)).toString('base64')
                     var opacity = parseFloat(config.get("background-opacity"))/100.0
                     var mime = (imgpath.endsWith(".jpg") || imgpath.endsWith(".jpeg"))?"image/jpg":
                         ((imgpath.endsWith(".png")?"image/png":((imgpath.endsWith(".gif")?"image/gif":""))))
@@ -231,7 +238,7 @@
                 .pane-chat-header, .chat.active, .chat, .chatlist-panel-search, .pane-header.pane-list-header, \
                 .input-chatlist-search, .chatlist-panel-body, .chatlist-panel-search div label input, \
                 .chatlist-panel-search div label, #app > div > div > div._3q4NP._1Iexl > div, .message > div > span \
-                 { background-color: #2E2C2B !important;, background-image: none !important; }\n \
+                 { background-color: #2E2C2B !important; background-image: none !important; }\n \
                 .chat-title, .header-title, .chat-body div span { color: white; }';
 
                 var blurImages = "div.message-in img, div.message-out img { filter: contrast(25%) blur(8px) grayscale(75%); } \n \
@@ -415,10 +422,10 @@
                 if (global.whatsApp.isWarningTrayIcon() && !global.whatsApp.isNewMessageIcon()) {
                     log.info("Setting tray icon to warning")
                     whatsApp.tray.setImage(__dirname + '/assets/icon/iconWarning.png')
-                } if (global.whatsApp.isWarningTrayIcon() && global.whatsApp.isNewMessageIcon()) {
+                } else if (global.whatsApp.isWarningTrayIcon() && global.whatsApp.isNewMessageIcon()) {
                     log.info("Setting tray icon to warning with messages")
                     whatsApp.tray.setImage(__dirname + '/assets/icon/iconWarningWithMsg.png')
-                } if (!global.whatsApp.isWarningTrayIcon() && global.whatsApp.isNewMessageIcon()) {
+                } else if (!global.whatsApp.isWarningTrayIcon() && global.whatsApp.isNewMessageIcon()) {
                     log.info("Setting tray icon to normal with messages")
                     whatsApp.tray.setImage(__dirname + '/assets/icon/iconWithMsg.png')
                 } else {
@@ -596,16 +603,21 @@
 
             whatsApp.window.webContents.on('did-finish-load', function() {
                 if (groupLinkOpenRequested != null) {
-                    whatsApp.window.webContents.executeJavaScript(
-                        "var el = document.createElement('a');\
-                        el.href = \"" + groupLinkOpenRequested + "\"; \
-                        el.style.display = \"none\"; \
-                        el.rel = 'noopener noreferrer'; \
-                        el.id = 'newlink'; \
-                        document.body.appendChild(el); \
-                        setTimeout(function() { var el = document.getElementById('newlink'); el.click(); document.body.removeChild(el); }, 500); \
-                        "
-                    )
+                    const safeUrl = JSON.stringify(groupLinkOpenRequested);
+                    whatsApp.window.webContents.executeJavaScript(`
+                        (function() {
+                            var el = document.createElement('a');
+                            el.href = ${safeUrl};
+                            el.style.display = 'none';
+                            el.rel = 'noopener noreferrer';
+                            el.id = 'newlink';
+                            document.body.appendChild(el);
+                            setTimeout(function() { 
+                                var el = document.getElementById('newlink'); 
+                                if (el) { el.click(); document.body.removeChild(el); }
+                            }, 500);
+                        })();
+                    `);
                 }
                 /* Checking for new version
                 var ep = "https://api.github.com/repos/Enrico204/Whatsapp-Desktop/releases/latest"
@@ -712,8 +724,10 @@
             }))
 
             whatsApp.window.webContents.on("new-window", (e, url) => {
-                electron.shell.openExternal(url)
                 e.preventDefault()
+                if (typeof url === 'string' && (url.startsWith('https://') || url.startsWith('http://'))) {
+                    electron.shell.openExternal(url)
+                }
             })
 
             whatsApp.window.on('close', onlyOSX((e) => {
@@ -896,8 +910,10 @@
             about.window.loadURL("file://" + __dirname + "/html/about.html")
             about.window.show()
             about.window.webContents.on("new-window", (e, url) => {
-                electron.shell.openExternal(url)
                 e.preventDefault()
+                if (typeof url === 'string' && (url.startsWith('https://') || url.startsWith('http://'))) {
+                    electron.shell.openExternal(url)
+                }
             })
 
             about.window.on("close", () => {

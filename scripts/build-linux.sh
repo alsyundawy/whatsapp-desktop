@@ -14,8 +14,8 @@ electron-packager ./app $APP_NAME \
 
 WORK_DIR=$OUTPUT_DIR"/whatsapp-linux-"$APP_ARCH
 
-rm -R $OUTPUT_DIR
-mkdir -p $WORK_DIR/DEBIAN
+rm -rf "$OUTPUT_DIR"
+mkdir -p "$WORK_DIR/DEBIAN"
 cp $TEMPLATES_DIR/debian/$APP_ARCH/* $WORK_DIR/DEBIAN
 cp $TEMPLATES_DIR/debian/changelog $WORK_DIR/DEBIAN
 sed -i "s/{version}/${APP_VERSION}/g" $WORK_DIR/DEBIAN/control

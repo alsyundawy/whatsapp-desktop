@@ -5,7 +5,7 @@ const {dialog} = require('@electron/remote');
 
 var SettingsView = {
     bindEvents() {
-        $this = this;
+        var $this = this;
         $("#save-button").on("click", (e) => {
             e.preventDefault();
             if ($(".invalid").length > 0 ) {
@@ -120,13 +120,32 @@ var SettingsView = {
 
 function chooseCustomCSS() {
     if ($("#customcss_enable").is(":checked")) {
-        dialog.showOpenDialog(function (fileNames) {
-            if (fileNames === undefined || fileNames.length == 0) {
-                $("#customcss_enable").removeAttr("checked");
+        const handleFiles = function (fileNames) {
+            if (!fileNames || fileNames.length === 0) {
+                $("#customcss_enable").prop("checked", false);
                 return;
             }
             $("#customcss_file").val(fileNames[0]);
-        });
+        };
+        try {
+            const dialogRes = dialog.showOpenDialog({
+                properties: ['openFile'],
+                filters: [{ name: 'CSS Files', extensions: ['css'] }]
+            }, handleFiles);
+            if (dialogRes && typeof dialogRes.then === 'function') {
+                dialogRes.then(result => {
+                    if (result.canceled || !result.filePaths || result.filePaths.length === 0) {
+                        $("#customcss_enable").prop("checked", false);
+                        return;
+                    }
+                    $("#customcss_file").val(result.filePaths[0]);
+                }).catch(() => {
+                    $("#customcss_enable").prop("checked", false);
+                });
+            }
+        } catch (e) {
+            $("#customcss_enable").prop("checked", false);
+        }
     } else {
         $("#customcss_file").val("");
     }
@@ -134,20 +153,40 @@ function chooseCustomCSS() {
 
 function chooseChatBackground() {
     if ($("#custombackground_enable").is(":checked")) {
-        dialog.showOpenDialog(function (fileNames) {
-            if (fileNames === undefined || fileNames.length == 0) {
-                $("#custombackground_enable").removeAttr("checked");
+        const handleFiles = function (fileNames) {
+            if (!fileNames || fileNames.length === 0) {
+                $("#custombackground_enable").prop("checked", false);
                 return;
             }
-            if (fileNames[0].endsWith(".jpg") || fileNames[0].endsWith(".jpeg")
-                || fileNames[0].endsWith(".png")
-                || fileNames[0].endsWith(".gif")) {
-                $("#custombackground_file").val(fileNames[0]);
+            const file = fileNames[0];
+            if (file.endsWith(".jpg") || file.endsWith(".jpeg")
+                || file.endsWith(".png")
+                || file.endsWith(".gif")) {
+                $("#custombackground_file").val(file);
             } else {
                 alert(_("Please choose a JPEG or PNG file"));
-                $("#custombackground_enable").removeAttr("checked");
+                $("#custombackground_enable").prop("checked", false);
             }
-        });
+        };
+        try {
+            const dialogRes = dialog.showOpenDialog({
+                properties: ['openFile'],
+                filters: [{ name: 'Images', extensions: ['jpg', 'jpeg', 'png', 'gif'] }]
+            }, handleFiles);
+            if (dialogRes && typeof dialogRes.then === 'function') {
+                dialogRes.then(result => {
+                    if (result.canceled || !result.filePaths || result.filePaths.length === 0) {
+                        $("#custombackground_enable").prop("checked", false);
+                        return;
+                    }
+                    handleFiles(result.filePaths);
+                }).catch(() => {
+                    $("#custombackground_enable").prop("checked", false);
+                });
+            }
+        } catch (e) {
+            $("#custombackground_enable").prop("checked", false);
+        }
     } else {
         $("#custombackground_file").val("");
     }

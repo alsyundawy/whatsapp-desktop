@@ -60,22 +60,36 @@
 
     }, false);
 
+    var lastAudioRate = null;
     setInterval(function() {
-        Array.from(document.querySelectorAll('audio')).map(function(audio) {
-            audio.playbackRate = (window.audioRate || 1)
-        });
-        if (window.audioRate) {
-            Array.from(document.querySelectorAll('.meta-audio *:first-child')).map(function(span) {
-                span.innerHTML = window.audioRate.toFixed(1) + "x&nbsp;";
-            });
+        var currentRate = window.audioRate || 1;
+        var audios = document.getElementsByTagName('audio');
+        if (audios.length > 0) {
+            for (var i = 0; i < audios.length; i++) {
+                if (audios[i].playbackRate !== currentRate) {
+                    audios[i].playbackRate = currentRate;
+                }
+            }
         }
-    }, 200);
+        if (window.audioRate && window.audioRate !== lastAudioRate) {
+            var spans = document.querySelectorAll('.meta-audio *:first-child');
+            for (var j = 0; j < spans.length; j++) {
+                spans[j].textContent = window.audioRate.toFixed(1) + "x ";
+            }
+            lastAudioRate = window.audioRate;
+        }
+    }, 1000);
 
     var NativeNotification = Notification;
     Notification = function(title, options) {
-        if (remote.getGlobal("config").currentSettings.quietMode) {
-            return;
-        }
+        try {
+            if (typeof remote !== 'undefined' && remote && remote.getGlobal) {
+                var cfg = remote.getGlobal("config");
+                if (cfg && cfg.currentSettings && cfg.currentSettings.quietMode) {
+                    return;
+                }
+            }
+        } catch (e) {}
     	var notification = new NativeNotification(title, options);
 
     	notification.addEventListener('click', function() {
