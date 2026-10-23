@@ -20,7 +20,7 @@
         "build:all": "./scripts/build-all.sh"
     },
     "devDependencies": {
-        "electron": "^44.7.2",
+        "electron": "^44.9.0",
         "@electron/packager": "^20.3.0"
     }
 }
